@@ -1,14 +1,14 @@
+const log = require("./utils/chalk");
 const express = require("express");
 const morgan = require("morgan");
-const log = require("./utils/chalk");
-const { middleware } = require("./middlewares/middleware");
-const { validateMethod } = require("./middlewares/validateMethod");
-const { default: chalk } = require("chalk");
+const chalk = require("chalk");
+const route = require("./routes/user.routes");
 const { isLang } = require("./middlewares/isLang");
 const { greeting } = require("./middlewares/greeting");
-const route = require("./routes/user.routes");
 const { authUser } = require("./middlewares/authUser");
+const { middleware } = require("./middlewares/middleware");
 const { errorHandler } = require("./middlewares/errHandler");
+const { validateMethod } = require("./middlewares/validateMethod");
 
 const app = express();
 
@@ -38,9 +38,9 @@ app.use(express.json()); //lo veremos en la siguiente sesión
 app.use("/users", authUser, route);
 //------------------------------------
 // middleware para manejo de errores
-app.get("/error", (req, res, next) => {
+app.get("/error", (_req, _res, next) => {
   const error = new Error("Esto es un error de ejemplo");
-  next(error); //le pasa al errorhanlder el error (linea 21)
+  next(error); //le  el error al errorhanlder el error (linea 21)
 });
 
 //------------------------------------
