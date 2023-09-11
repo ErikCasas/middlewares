@@ -1,5 +1,6 @@
 const { default: chalk } = require("chalk");
 const log = require("../utils/chalk");
+const { post } = require("../app");
 
 exports.validateMethod = (req, res, next) => {
   const method = req.method; //los middleware tienen acceso al objeto de la solcitud "req"
@@ -12,3 +13,4 @@ exports.validateMethod = (req, res, next) => {
     res.status(500).json("el metodo no es valido");
   }
 };
+

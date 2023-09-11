@@ -18,7 +18,6 @@ const app = express();
 //antes que cualquier ruta
 app.use(middleware);
 app.use(validateMethod);
-app.use(errorHandler); //middleware para manejo de errores
 
 //------------------------------------
 //otro middleware resgistrado a nivel de aplicación, con la diferencia
@@ -88,4 +87,8 @@ app.get("/mas-saludos/:lang", isLang, greeting, (req, res) => {
   const saludo = req.lang;
   res.status(200).json(saludo);
 });
+
+app.use(errorHandler); //middleware para manejo de errores
+
+
 module.exports = app;
